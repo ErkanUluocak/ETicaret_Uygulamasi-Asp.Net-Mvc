@@ -4,10 +4,10 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Kategoriler</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Yeni Kayıt", "Create",null, new { @class = "btn btn-primary" })
 </p>
 <table class="table">
     <tr>
@@ -24,9 +24,9 @@
                 @Html.DisplayFor(modelItem => item.KategoriAdi)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.KategoriID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.KategoriID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.KategoriID }, new { @class = "btn btn-danger btn-xs" }) 
+                @Html.ActionLink("Düzenle", "Edit", new { id = item.KategoriID }, new { @class = "btn btn-success btn-xs" }) |
+                @Html.ActionLink("Detay", "Details", new { id = item.KategoriID }, new { @class = "btn btn-warning btn-xs" }) |
+                @Html.ActionLink("Sil", "Delete", new { id = item.KategoriID }, new { @class = "btn btn-danger btn-xs" }) 
             </td>
         </tr>
     }
