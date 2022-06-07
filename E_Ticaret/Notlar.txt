@@ -1,0 +1,2 @@
+﻿model>add>new>item>ado net entity data model>db first
+controllers>add>controller> using entity framework
