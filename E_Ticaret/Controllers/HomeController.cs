@@ -19,6 +19,14 @@ namespace E_Ticaret.Controllers
             return View();
         }
 
+        public ActionResult Kategori(int id)
+        {
+            Kategori kat = db.Kategori.Find(id);
+            ViewBag.Kategori = kat.KategoriAdi;
+            ViewBag.Kategoriler = db.Kategori.ToList();
+            return View(db.Urunler.Where(x => x.KategoriID == id).OrderBy(x => x.UrunAdi).ToList());
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

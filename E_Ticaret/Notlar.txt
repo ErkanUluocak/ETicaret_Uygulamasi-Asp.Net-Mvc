@@ -4,3 +4,4 @@
 -ürün create beginform alanına özellikler eklendi.
 -urun controller a resim kodları eklendi
 -urun delete işlemleri delete action içinde gerçekleşti.
+-home cont kategori action eklendi.
