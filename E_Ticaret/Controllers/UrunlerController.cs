@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -48,12 +49,17 @@ namespace E_Ticaret.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UrunID,UrunAdi,KategoriID,UrunAciklamasi,UrunFiyatı")] Urunler urunler)
+        public ActionResult Create([Bind(Include = "UrunID,UrunAdi,KategoriID,UrunAciklamasi,UrunFiyatı")] Urunler urunler, HttpPostedFileBase UrunResim)
         {
             if (ModelState.IsValid)
             {
                 db.Urunler.Add(urunler);
                 db.SaveChanges();
+                if (UrunResim != null && UrunResim.ContentLength > 0)
+                {
+                    string dosya = Path.Combine(Server.MapPath("~/Resim"), urunler.UrunID + ".jpg");
+                    UrunResim.SaveAs(dosya);
+                }
                 return RedirectToAction("Index");
             }
 
@@ -82,12 +88,17 @@ namespace E_Ticaret.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UrunID,UrunAdi,KategoriID,UrunAciklamasi,UrunFiyatı")] Urunler urunler)
+        public ActionResult Edit([Bind(Include = "UrunID,UrunAdi,KategoriID,UrunAciklamasi,UrunFiyatı")] Urunler urunler, HttpPostedFileBase UrunResim)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(urunler).State = EntityState.Modified;
                 db.SaveChanges();
+                if (UrunResim != null && UrunResim.ContentLength > 0)
+                {
+                    string dosya = Path.Combine(Server.MapPath("~/Resim"), urunler.UrunID + ".jpg");
+                    UrunResim.SaveAs(dosya);
+                }
                 return RedirectToAction("Index");
             }
             ViewBag.KategoriID = new SelectList(db.Kategori, "KategoriID", "KategoriAdi", urunler.KategoriID);
@@ -117,6 +128,14 @@ namespace E_Ticaret.Controllers
             Urunler urunler = db.Urunler.Find(id);
             db.Urunler.Remove(urunler);
             db.SaveChanges();
+
+            string dosya = Path.Combine(Server.MapPath("~/Resim"), urunler.UrunID + ".jpg");
+
+            FileInfo fi = new FileInfo(dosya);
+            if (fi.Exists)
+            {
+                fi.Delete();
+            }
             return RedirectToAction("Index");
         }
 

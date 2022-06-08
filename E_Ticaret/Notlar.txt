@@ -1,2 +1,6 @@
-﻿model>add>new>item>ado net entity data model>db first
-controllers>add>controller> using entity framework
+﻿-model>add>new>item>ado net entity data model>db first
+-controllers>add>controller> using entity framework
+-ürün resmi ekleme işlemleri projeye Resim klasörü eklenmesi
+-ürün create beginform alanına özellikler eklendi.
+-urun controller a resim kodları eklendi
+-urun delete işlemleri delete action içinde gerçekleşti.

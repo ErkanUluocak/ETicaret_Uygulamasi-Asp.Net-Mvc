@@ -4,15 +4,14 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<h2>Ürün Ekle</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>Urunler</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -34,7 +33,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.UrunAciklamasi, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.UrunAciklamasi, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextAreaFor(model => model.UrunAciklamasi, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.UrunAciklamasi, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -48,16 +47,21 @@
         </div>
 
         <div class="form-group">
+            <label class="control-label col-md-2">Ürün Resmi</label>
+            <div class="col-md-10">
+                <input type="file"  id="UrunResim" name="UrunResim" class="form-control"/>
+            </div>
+        </div>
+
+        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Kaydet" class="btn btn-primary" />
+                @Html.ActionLink("Listeye Dön", "Index", null, new { @class = "btn btn-default" })
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
