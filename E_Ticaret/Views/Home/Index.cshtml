@@ -28,7 +28,7 @@
         {
            <div class="col-md-4" style="border:1px solid #000000">
                <h5>@item.UrunAdi</h5>
-               <img src="~/Resim/@(item.UrunID).jpg" width="100"/> <br />
+               <img src="~/Resim/@(item.UrunID).jpg" width="100"/> <br /> <br />
                <p>
                    <a href="@Url.Action("Urun","Home",new { id = item.UrunID })" class="btn btn-default">Ürün Detay</a>
                    <span style="color:red; float:right;">@item.UrunFiyatı</span>

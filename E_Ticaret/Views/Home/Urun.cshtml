@@ -1,0 +1,47 @@
+﻿@using E_Ticaret.Models
+@model Urunler
+@{
+    ViewBag.Title = "Urun";
+    List<Kategori> kategoriliste = ViewBag.Kategoriler as List<Kategori>;
+}
+
+<div class="jumbotron">
+    <h3>@Model.Kategori.KategoriAdi</h3>
+
+</div>
+
+<div class="col-md-3">
+    <h2>Kategoriler</h2>
+    <ul>
+        @foreach (var item in kategoriliste)
+        {
+            <li>
+                @Html.ActionLink(item.KategoriAdi, "Kategori", new { id = item.KategoriID })
+            </li>
+        }
+    </ul>
+</div>
+
+<div class="col-md-9">
+    <h2><b>Ürün Adı</b></h2>
+    <h5>@Model.UrunAdi</h5>
+    <div class="row">
+        <div class="col-md-6">
+            <img src="~/Resim/@(Model.UrunID).jpg" width="100" /> <br />
+        </div>
+        <div class="col-md-6">
+            Ürün Fiyatı :
+            <span style="color:red;">@Model.UrunFiyatı</span>
+            <br /> <br />
+            <form action="/Sepet/SepeteEkle">
+                <input type="hidden" value="@Model.UrunID" name="id" id="id" />
+                <input type="number" id="adet" value="1" style="width:100px" />
+                <input type="submit" id="gonder" value="Sepete Ekle" />
+            </form>
+        </div>
+    </div>
+
+    <h2><b>Ürün Açıklaması</b></h2>
+    <p>@Model.UrunAciklamasi</p>
+</div>
+
