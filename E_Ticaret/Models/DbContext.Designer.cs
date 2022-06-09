@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\403ERKAN_AKSAM\source\repos\E_Ticaret\E_Ticaret\Models\DbContext.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\403ERKAN_AKSAM\source\repos\ErkanUluocak\E_Ticaret_Uygulamasi-Asp-Net-Mvc-\E_Ticaret\Models\DbContext.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
