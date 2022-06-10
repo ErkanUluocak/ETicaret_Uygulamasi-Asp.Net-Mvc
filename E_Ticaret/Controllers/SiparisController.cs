@@ -11,12 +11,13 @@ namespace E_Ticaret.Controllers
     [Authorize]
     public class SiparisController : Controller
     {
-      
+
         E_TicaretEntities db = new E_TicaretEntities();
 
         public ActionResult Index()
         {
-            return View(db.Siparis.ToList());
+            string userID = User.Identity.GetUserId();
+            return View(db.Siparis.Where(x => x.UserID == userID).ToList());
         }
 
         public ActionResult SiparisDetay(int id)

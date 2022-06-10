@@ -11,6 +11,7 @@ using E_Ticaret.Models;
 
 namespace E_Ticaret.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class UrunlerController : Controller
     {
         private E_TicaretEntities db = new E_TicaretEntities();
