@@ -7,7 +7,7 @@ namespace WebAPIProject.Models
 {
     public class Kategorim
     {
-        public int ID { get; set; }
-        public string Name { get; set; }
+        public int KategoriID { get; set; }
+        public string KategoriAdi { get; set; }
     }
 }

@@ -8,9 +8,11 @@ using WebAPIProject.Models;
 
 namespace WebAPIProject.Controllers
 {
+    
     public class KategorilerController : ApiController
     {
         E_TicaretEntities db = new E_TicaretEntities();
+       
         public List<Kategorim> Get()
         {
 
@@ -20,7 +22,7 @@ namespace WebAPIProject.Controllers
 
             foreach (var kategori in kategoriler)
             {
-                liste.Add(new Kategorim() { ID = kategori.KategoriID, Name = kategori.KategoriAdi });
+                liste.Add(new Kategorim() { KategoriID = kategori.KategoriID, KategoriAdi = kategori.KategoriAdi });
             }
 
             return liste;

@@ -1,7 +1,10 @@
 ﻿using E_Ticaret.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -12,11 +15,19 @@ namespace E_Ticaret.Controllers
 
         E_TicaretEntities db = new E_TicaretEntities();
 
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            ViewBag.Kategoriler = db.Kategori.ToList();
+            var client = new HttpClient();
+            client.BaseAddress = new Uri("https://localhost:44301/");
+            var result = await client.GetAsync("api/Kategoriler");
+            var sonuc = await result.Content.ReadAsStringAsync();
+
+            ViewBag.Kategoriler = JsonConvert.DeserializeObject<List<Kategori>>(sonuc);
+
+
             ViewBag.Urunler = db.Urunler.OrderByDescending(x => x.UrunID).Take(10).ToList();
             return View();
+            
         }
 
         public ActionResult Kategori(int id)
