@@ -16,8 +16,9 @@ namespace E_Ticaret.Controllers
         public ActionResult SepeteEkle(int? adet, int id)
         {
             Urunler urun = db.Urunler.Find(id);
-            Sepet sepettekiurun = db.Sepet.FirstOrDefault(x => x.UrunID == id);
             string userID = User.Identity.GetUserId();
+
+            Sepet sepettekiurun = db.Sepet.FirstOrDefault(x => x.UserID == userID && x.UrunID == id);
 
             if (sepettekiurun == null)
             {
